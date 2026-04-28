@@ -1,18 +1,11 @@
-import { Link, Outlet } from "@tanstack/react-router";
+import { Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import Header from '../components/header/Header'
 
 const RootComponent = () => {
   return ( 
     <>
-        <Link
-          to="/"
-          activeProps={{
-            className: 'font-bold',
-          }}
-          activeOptions={{ exact: true }}
-        >
-          Home
-        </Link>
+        <Header/>
         <Outlet/>
         <TanStackRouterDevtools position="bottom-right" />
     </> );
