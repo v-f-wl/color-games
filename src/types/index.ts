@@ -1,3 +1,4 @@
+export type DifficultyLevel  = 'easy' | 'medium' | 'hard'
 export type GameMode = {
   id: string;
   title: string;
@@ -6,7 +7,7 @@ export type GameMode = {
 };
 
 export type Difficulty = {
-  id: string;
+  id: DifficultyLevel;
   title: string;
   description: string;
 };
