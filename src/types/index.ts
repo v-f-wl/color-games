@@ -23,3 +23,8 @@ export type GameModeDetails = {
     description: string;
   }[];
 };
+
+export interface HistoryListType {
+  targetColor: string
+  selectedColor: string
+}

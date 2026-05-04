@@ -1,21 +1,25 @@
-// import { useLocation } from "@tanstack/react-router";
+import { useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import Preparing from "../../components/color-picker/Preparing";
 import ShowColor from "../../components/color-picker/ShowColor";
 import PickColor from "../../components/color-picker/PickColor";
 import generateRandomColor from "../../shared/utils/generate-color";
 import RoundResult from "../../components/color-picker/RoundResult";
+import FinalResult from "../../components/color-picker/FinalResult";
+import type { HistoryListType } from "../../types";
 
 type GameStep = 'START' | 'PREPARING' | 'SHOW_COLOR' | 'PICK_COLOR' | 'ROUND_RESULT' | 'FINAL_RESULTS';
 
+
 const ColorPicker = () => {
-  // const location = useLocation()
-  // const difficultValue = location.state.difficultValue
+  const location = useLocation()
+  const difficultValue = location.state.difficultValue
 
   const [step, setStep] = useState<GameStep>('PREPARING')
-  // const [round, setRound] = useState(1)
+  const [round, setRound] = useState(1)
   const [targetColor, setTargetColor] = useState(() => generateRandomColor())
   const [selectedColor, setSelectedColor] = useState('')
+  const [historyList, setHistoryList] = useState<HistoryListType[]>([])
 
 
   useEffect(() => {
@@ -27,25 +31,59 @@ const ColorPicker = () => {
 
   const handleSubmitColor = (selectedColor: string) => {
     setSelectedColor(() => selectedColor)
-    setStep(() => 'ROUND_RESULT' )
-  } 
+    const roundResult = {
+      targetColor,
+      selectedColor
+    }
 
-  const handleStartAgain = () => {
-    setTargetColor(() => generateRandomColor())
-    setStep(() => 'SHOW_COLOR')
+    setHistoryList(prev => [...prev, roundResult])
+
+    setStep(() => 'ROUND_RESULT')
   }
 
-  return ( 
-    <div className="">  
-      {step === 'PREPARING' && <Preparing duration={3000} onComplete={() => setStep('SHOW_COLOR')}/>}
-      
-      {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor}/>}
+  const handleStartAgain = () => {
+    if (round == 5) {
+      setStep(() => 'FINAL_RESULTS')
+    } else {
+      setRound(prev => prev + 1)
+      setTargetColor(() => generateRandomColor())
+      setStep(() => 'SHOW_COLOR')
+    }
+
+  }
+
+  const resetGame = () => {
+    setHistoryList(() => [])
+    setTargetColor(() => generateRandomColor())
+    setRound(() => 1)
+    setStep(() => 'PREPARING')
+  }
+
+  return (
+    <div className="">
+      {step === 'PREPARING' && <Preparing duration={3000} onComplete={() => setStep('SHOW_COLOR')} />}
+
+      {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor} />}
 
       {step === 'PICK_COLOR' && <PickColor submitColor={handleSubmitColor} />}
 
-      {step === 'ROUND_RESULT' && <RoundResult targetColor={targetColor} selectedColor={selectedColor} nextStap={handleStartAgain}/>}
+      {step === 'ROUND_RESULT' &&
+        <RoundResult
+          targetColor={targetColor}
+          selectedColor={selectedColor}
+          nextStep={handleStartAgain}
+          round={round}
+        />
+      }
+      {step === 'FINAL_RESULTS' && 
+        <FinalResult 
+          historyList={historyList}
+          resetGame={resetGame}
+
+        />
+      }
     </div>
   );
 }
- 
+
 export default ColorPicker;
