@@ -1,5 +1,5 @@
 import { useLocation } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Preparing from "../../components/color-picker/Preparing";
 import ShowColor from "../../components/color-picker/ShowColor";
 import PickColor from "../../components/color-picker/PickColor";
@@ -20,14 +20,6 @@ const ColorPicker = () => {
   const [targetColor, setTargetColor] = useState(() => generateRandomColor())
   const [selectedColor, setSelectedColor] = useState('')
   const [historyList, setHistoryList] = useState<HistoryListType[]>([])
-
-
-  useEffect(() => {
-    if (step === 'SHOW_COLOR') {
-      const timer = setTimeout(() => setStep('PICK_COLOR'), 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [step])
 
   const handleSubmitColor = (selectedColor: string) => {
     setSelectedColor(() => selectedColor)
@@ -63,7 +55,7 @@ const ColorPicker = () => {
     <div className="">
       {step === 'PREPARING' && <Preparing duration={3000} onComplete={() => setStep('SHOW_COLOR')} />}
 
-      {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor} />}
+      {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor} duration={3000} onComplete={() => setStep('PICK_COLOR')} />}
 
       {step === 'PICK_COLOR' && <PickColor submitColor={handleSubmitColor} />}
 

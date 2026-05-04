@@ -1,4 +1,3 @@
-import './pick-color.css'
 import { useState, useEffect } from 'react';
 
 interface PreparingProps {
@@ -7,7 +6,7 @@ interface PreparingProps {
 }
 
 const Preparing = ({ duration, onComplete }: PreparingProps) => {
-  const [timeLeft, setTimeLeft] = useState(duration);
+  const [timeLeft, setTimeLeft] = useState(duration)
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -16,20 +15,20 @@ const Preparing = ({ duration, onComplete }: PreparingProps) => {
     }
 
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1000);
-    }, 1000);
+      setTimeLeft((prev) => prev - 1000)
+    }, 1000)
 
-    return () => clearInterval(timer);
-  }, [timeLeft, onComplete]);
+    return () => clearInterval(timer)
+  }, [timeLeft, onComplete])
 
   const seconds = Math.floor((timeLeft % 60000) / 1000);
 
   return (
-    <div className='wrapper max-w-6xl pt-14 flex items-center flex-col gap-2'>
-      <span className='text-4xl'>
+    <div className='w-full h-screen flex items-center justify-center flex-col gap-2'>
+      <span className='text-6xl font-bold'>
         {String(seconds).padStart(2,)}
       </span>
-      <p>Приготовьтесь...</p>
+      <p className='font-light'>Приготовьтесь...</p>
     </div>
   );
 };

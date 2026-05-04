@@ -12,15 +12,22 @@ const PickColor = ({submitColor} : PickColorInterface) => {
     submitColor(selectedColor)
   }
   return ( 
-    <div className="wrapper pick-color max-w-6xl pt-9 flex flex-col gap-4">
-      <div className="w-full h-80" style={{background: selectedColor}}></div>
-      <HexColorPicker color={selectedColor} onChange={setSelectedColor}/>
-      <button 
-        className="border p-4" 
-        onClick={handleSubmitColor}
-      >
-        Выбрать
-      </button>
+    <div 
+      className=" 
+        w-full h-screen 
+        flex items-center justify-center
+      "
+      style={{background: selectedColor}}
+    >
+      <div className="">
+        <HexColorPicker color={selectedColor} onChange={setSelectedColor}/>
+        <button 
+          className="py-2 px-4 mt-4 w-full rounded-md bg-gray-900 text-white cursor-pointer" 
+          onClick={handleSubmitColor}
+        >
+          Выбрать
+        </button>
+      </div>
     </div>
    );
 }

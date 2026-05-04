@@ -28,3 +28,7 @@ export interface HistoryListType {
   targetColor: string
   selectedColor: string
 }
+
+export interface IconProps{
+  size: number
+}

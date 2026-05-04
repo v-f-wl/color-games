@@ -8,3 +8,19 @@
   margin: 0 auto;
   padding: auto 2rem;
 }
+.button{
+  padding: 4px 8px;
+  display: inline-flex;
+  border: 3px solid #56984e;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #56984e;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.button:hover{
+  border-color: #486944fd;
+  background: transparent;
+  color: #486944fd;
+}

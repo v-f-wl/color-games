@@ -1,30 +1,40 @@
 import { Link } from "@tanstack/react-router";
 import type { HistoryListType } from "../../types";
 
-interface FinalResultProps{
+import Header from '../header/Header'
+
+interface FinalResultProps {
   historyList: HistoryListType[]
   resetGame: () => void
 }
-const FinalResult = ({historyList, resetGame}: FinalResultProps) => {
+const FinalResult = ({ historyList, resetGame }: FinalResultProps) => {
 
-  return ( 
-    <div className="wrapper max-w-6xl">
-      {historyList.map(item => (
-        <div className="flex gap-3">
-          <div className="w-20 h-20" style={{background: item.targetColor}}>
-            Цвет
+  return (
+    <>
+      <Header />
+      <section>
+        <div className="w-full h-screen flex items-center justify-center flex-col gap-12">
+          <div className="flex gap-4 relative">
+            <div className="absolute -top-7 left-1/2 -translate-x-1/2">Оригинал</div>
+            <div className="absolute -bottom-7 left-1/2 -translate-x-1/2">Ваш цвет</div>
+            {historyList.map(item => (
+              <div 
+                className="w-20 h-20"
+                style={{ background:  `linear-gradient(135deg, ${item.targetColor} 50%, ${item.selectedColor} 50%)` }}
+              >
+                
+              </div>
+            ))}
+
           </div>
-          <div className="w-20 h-20" style={{background: item.selectedColor}}>
-            Ответ
+          <div className="flex gap-8 items-center">
+            <Link to="/">Главное меню</Link>
+            <button onClick={resetGame}>Играть снова</button>
           </div>
         </div>
-      ))}
-      <div className="">
-        <Link to="/">Главное меню</Link>
-        <button onClick={resetGame}>Перезагрузить</button>
-      </div>
-    </div>
-   );
+      </section>
+    </>
+  );
 }
- 
+
 export default FinalResult;
