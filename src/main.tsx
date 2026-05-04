@@ -3,6 +3,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 import './index.css'
 import React from 'react'
+import type { DifficultyLevel } from './types'
 
 const router = createRouter({
   routeTree,
@@ -11,6 +12,10 @@ const router = createRouter({
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
+  }
+  interface HistoryState {
+    modeValue?: string | null 
+    difficultValue?: DifficultyLevel
   }
 }
 

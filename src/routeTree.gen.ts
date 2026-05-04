@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root.route'
 import { Route as IndexRouteRouteImport } from './routes/index.route'
+import { Route as ColorPickerIndexRouteRouteImport } from './routes/color-picker/index.route'
 import { Route as DescriptionGameIdRouteRouteImport } from './routes/description/$gameId.route'
 
 const IndexRouteRoute = IndexRouteRouteImport.update({
   id: '/',
   path: '',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColorPickerIndexRouteRoute = ColorPickerIndexRouteRouteImport.update({
+  id: '/color-picker/',
+  path: '/color-picker',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DescriptionGameIdRouteRoute = DescriptionGameIdRouteRouteImport.update({
@@ -26,27 +32,31 @@ const DescriptionGameIdRouteRoute = DescriptionGameIdRouteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRouteRoute
   '/description/$gameId': typeof DescriptionGameIdRouteRoute
+  '/color-picker/': typeof ColorPickerIndexRouteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRouteRoute
   '/description/$gameId': typeof DescriptionGameIdRouteRoute
+  '/color-picker': typeof ColorPickerIndexRouteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRouteRoute
   '/description/$gameId': typeof DescriptionGameIdRouteRoute
+  '/color-picker/': typeof ColorPickerIndexRouteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/description/$gameId'
+  fullPaths: '/' | '/description/$gameId' | '/color-picker/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/description/$gameId'
-  id: '__root__' | '/' | '/description/$gameId'
+  to: '/' | '/description/$gameId' | '/color-picker'
+  id: '__root__' | '/' | '/description/$gameId' | '/color-picker/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRouteRoute: typeof IndexRouteRoute
   DescriptionGameIdRouteRoute: typeof DescriptionGameIdRouteRoute
+  ColorPickerIndexRouteRoute: typeof ColorPickerIndexRouteRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/color-picker/': {
+      id: '/color-picker/'
+      path: '/color-picker'
+      fullPath: '/color-picker/'
+      preLoaderRoute: typeof ColorPickerIndexRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/description/$gameId': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRouteRoute: IndexRouteRoute,
   DescriptionGameIdRouteRoute: DescriptionGameIdRouteRoute,
+  ColorPickerIndexRouteRoute: ColorPickerIndexRouteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

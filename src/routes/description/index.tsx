@@ -68,10 +68,10 @@ const DescriptionPage = () => {
       <div className="mt-12 flex justify-center gap-4">
         <Link to="/">Назад</Link>
         <Link 
-          to={`/${gameId}`}
+          to={'/'+`${gameId}`}
           state={{
+            modeValue ,
             difficultValue,
-            modeValue,
           }}
         >
           Начать игру</Link>

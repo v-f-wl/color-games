@@ -1,0 +1,37 @@
+import './pick-color.css'
+import { useState, useEffect } from 'react';
+
+interface PreparingProps {
+  duration: number; // общее время в мс (например, 120000 для 2 минут)
+  onComplete: () => void;
+}
+
+const Preparing = ({ duration, onComplete }: PreparingProps) => {
+  const [timeLeft, setTimeLeft] = useState(duration);
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      onComplete();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1000);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, onComplete]);
+
+  const seconds = Math.floor((timeLeft % 60000) / 1000);
+
+  return (
+    <div className='wrapper max-w-6xl pt-14 flex items-center flex-col gap-2'>
+      <span className='text-4xl'>
+        {String(seconds).padStart(2,)}
+      </span>
+      <p>Приготовьтесь...</p>
+    </div>
+  );
+};
+
+export default Preparing
