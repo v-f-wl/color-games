@@ -1,20 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import generateRandomColor from "../../shared/utils/generate-color";
 import { HexColorPicker } from "react-colorful";
 
 interface PickColorInterface{
   submitColor: (selectedColor: string) => void,
+  duration: number
 }
-const PickColor = ({submitColor} : PickColorInterface) => {
+const PickColor = ({submitColor, duration} : PickColorInterface) => {
   const [selectedColor, setSelectedColor] = useState(() => generateRandomColor())
+  const [timeLeft, setTimeLeft] = useState(duration)
+
+  useEffect(() => {
+    if(duration === -1) return
+    if (timeLeft <= 0) {
+      handleSubmitColor()
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1000)
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [timeLeft, duration])
 
   function handleSubmitColor(){
     submitColor(selectedColor)
   }
+
+  const seconds = Math.floor((timeLeft % 60000) / 1000)
+
   return ( 
     <div 
       className=" 
-        w-full h-screen 
+        w-full h-screen relative
         flex items-center justify-center
       "
       style={{background: selectedColor}}
@@ -28,6 +47,17 @@ const PickColor = ({submitColor} : PickColorInterface) => {
           Выбрать
         </button>
       </div>
+      {duration !== -1 && (
+        <div
+          className="
+            absolute lg:bottom-10 lg:right-10
+            p-4 w-28 h-28 flex items-center justify-center rounded-full
+            lg:text-8xl text-gray-100 bg-neutral-700
+          "
+        >
+          {String(seconds).padStart(2,)}
+        </div>
+      )}
     </div>
    );
 }

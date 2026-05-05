@@ -11,17 +11,17 @@ const ShowColor = ({ currentColor, onComplete, duration }: ShowColorProps) => {
   useEffect(() => {
     if (timeLeft <= 0) {
       onComplete();
-      return;
+      return
     }
 
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1000);
-    }, 1000);
+      setTimeLeft((prev) => prev - 1000)
+    }, 1000)
 
-    return () => clearInterval(timer);
-  }, [timeLeft, onComplete]);
+    return () => clearInterval(timer)
+  }, [timeLeft, onComplete])
 
-  const seconds = Math.floor((timeLeft % 60000) / 1000);
+  const seconds = Math.floor((timeLeft % 60000) / 1000)
   return (
     <div
       className='w-full h-screen relative'

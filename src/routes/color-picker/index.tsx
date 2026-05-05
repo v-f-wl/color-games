@@ -1,12 +1,14 @@
 import { useLocation } from "@tanstack/react-router";
 import { useState } from "react";
+
+import type { HistoryListType } from "../../types";
+import generateRandomColor from "../../shared/utils/generate-color";
+
 import Preparing from "../../components/color-picker/Preparing";
 import ShowColor from "../../components/color-picker/ShowColor";
 import PickColor from "../../components/color-picker/PickColor";
-import generateRandomColor from "../../shared/utils/generate-color";
 import RoundResult from "../../components/color-picker/RoundResult";
 import FinalResult from "../../components/color-picker/FinalResult";
-import type { HistoryListType } from "../../types";
 
 type GameStep = 'START' | 'PREPARING' | 'SHOW_COLOR' | 'PICK_COLOR' | 'ROUND_RESULT' | 'FINAL_RESULTS';
 
@@ -55,9 +57,9 @@ const ColorPicker = () => {
     <div className="">
       {step === 'PREPARING' && <Preparing duration={3000} onComplete={() => setStep('SHOW_COLOR')} />}
 
-      {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor} duration={3000} onComplete={() => setStep('PICK_COLOR')} />}
+      {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor} duration={difficultValue === 'easy' ? 5000 : 3000} onComplete={() => setStep('PICK_COLOR')} />}
 
-      {step === 'PICK_COLOR' && <PickColor submitColor={handleSubmitColor} />}
+      {step === 'PICK_COLOR' && <PickColor duration={difficultValue == 'hard' ? 4000 : -1} submitColor={handleSubmitColor} />}
 
       {step === 'ROUND_RESULT' &&
         <RoundResult
