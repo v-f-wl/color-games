@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { colord } from "../../shared/lib/colord";
 import { getMatchPercentage } from "../../shared/utils/get-match-percentage";
 
@@ -13,8 +11,9 @@ interface RoundResultProps {
   round: number
 }
 const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResultProps) => {
-  const [coefficient, setCoefficient] = useState(() => getMatchPercentage(colord(targetColor).delta(selectedColor)))
-
+  const coefficient = getMatchPercentage(
+  colord(targetColor).delta(selectedColor)
+);
   return (
     <section>
       <Header />
@@ -30,7 +29,7 @@ const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResul
             </div>
 
             <div className="absolute top-4 right-4">
-              <span className="text-4xl font-semibold">{coefficient}</span>
+              <span className="text-4xl font-semibold">{coefficient.toFixed(2).toString()}</span>
               <span className="text-xl"> / 100</span>
             </div>
 

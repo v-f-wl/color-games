@@ -2,13 +2,16 @@ import { Link } from "@tanstack/react-router";
 import type { HistoryListType } from "../../types";
 
 import Header from '../header/Header'
+import { calculateAverageColorDifference } from "../../shared/utils/get-match-percentage";
 
 interface FinalResultProps {
   historyList: HistoryListType[]
   resetGame: () => void
 }
 const FinalResult = ({ historyList, resetGame }: FinalResultProps) => {
-
+  const average = calculateAverageColorDifference(historyList)
+  const formatted = average.toFixed(2)
+  
   return (
     <>
       <Header />
@@ -27,6 +30,12 @@ const FinalResult = ({ historyList, resetGame }: FinalResultProps) => {
             ))}
 
           </div>
+
+          <div className="text-center">
+            <h2 className="">Средний результат</h2>
+            <span className="text-4xl font-bold">{formatted}</span>
+          </div>
+          
           <div className="flex gap-8 items-center">
             <Link to="/">Главное меню</Link>
             <button onClick={resetGame}>Играть снова</button>
