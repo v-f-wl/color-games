@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root.route'
 import { Route as IndexRouteRouteImport } from './routes/index.route'
+import { Route as KukuKubeIndexRouteRouteImport } from './routes/kuku-kube/index.route'
 import { Route as ColorPickerIndexRouteRouteImport } from './routes/color-picker/index.route'
 import { Route as DescriptionGameIdRouteRouteImport } from './routes/description/$gameId.route'
 
 const IndexRouteRoute = IndexRouteRouteImport.update({
   id: '/',
   path: '',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KukuKubeIndexRouteRoute = KukuKubeIndexRouteRouteImport.update({
+  id: '/kuku-kube/',
+  path: '/kuku-kube',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ColorPickerIndexRouteRoute = ColorPickerIndexRouteRouteImport.update({
@@ -33,30 +39,39 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRouteRoute
   '/description/$gameId': typeof DescriptionGameIdRouteRoute
   '/color-picker/': typeof ColorPickerIndexRouteRoute
+  '/kuku-kube/': typeof KukuKubeIndexRouteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRouteRoute
   '/description/$gameId': typeof DescriptionGameIdRouteRoute
   '/color-picker': typeof ColorPickerIndexRouteRoute
+  '/kuku-kube': typeof KukuKubeIndexRouteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRouteRoute
   '/description/$gameId': typeof DescriptionGameIdRouteRoute
   '/color-picker/': typeof ColorPickerIndexRouteRoute
+  '/kuku-kube/': typeof KukuKubeIndexRouteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/description/$gameId' | '/color-picker/'
+  fullPaths: '/' | '/description/$gameId' | '/color-picker/' | '/kuku-kube/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/description/$gameId' | '/color-picker'
-  id: '__root__' | '/' | '/description/$gameId' | '/color-picker/'
+  to: '/' | '/description/$gameId' | '/color-picker' | '/kuku-kube'
+  id:
+    | '__root__'
+    | '/'
+    | '/description/$gameId'
+    | '/color-picker/'
+    | '/kuku-kube/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRouteRoute: typeof IndexRouteRoute
   DescriptionGameIdRouteRoute: typeof DescriptionGameIdRouteRoute
   ColorPickerIndexRouteRoute: typeof ColorPickerIndexRouteRoute
+  KukuKubeIndexRouteRoute: typeof KukuKubeIndexRouteRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +81,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kuku-kube/': {
+      id: '/kuku-kube/'
+      path: '/kuku-kube'
+      fullPath: '/kuku-kube/'
+      preLoaderRoute: typeof KukuKubeIndexRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/color-picker/': {
@@ -89,6 +111,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRouteRoute: IndexRouteRoute,
   DescriptionGameIdRouteRoute: DescriptionGameIdRouteRoute,
   ColorPickerIndexRouteRoute: ColorPickerIndexRouteRoute,
+  KukuKubeIndexRouteRoute: KukuKubeIndexRouteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

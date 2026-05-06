@@ -57,8 +57,8 @@ export const GAME_MODES_CONFIG: Record<string, GameModeDetails> = {
     ],
   },
 
-  "odd-color": {
-    id: "odd-color",
+  "kuku-kube": {
+    id: "kuku-kube",
     title: "Лишний цвет",
     description:
       "В сетке из одинаковых цветов спрятан один, который немного отличается. Найди его как можно быстрее.",

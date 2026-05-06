@@ -1,9 +1,11 @@
+import type { DifficultyLevel } from "../../types"
+
 interface DescriptionRuleCardProps{
-  id: string
+  id: DifficultyLevel
   title: string
   description: string
   isActive: boolean
-  handleChangeDifficult: (id: string) => void
+  handleChangeDifficult: (id: DifficultyLevel) => void
 }
 const DescriptionRuleCard = ({
   id,

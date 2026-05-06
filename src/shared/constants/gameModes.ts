@@ -16,7 +16,7 @@ export const GAME_MODES: GameMode[] = [
     image: "arc.svg",
   },
   {
-    id: "odd-color",
+    id: "kuku-kube",
     title: "Лишний цвет",
     description:
       "В сетке цветов найди один, который отличается от остальных. Отличия могут быть почти незаметными.",
