@@ -1,4 +1,13 @@
+import Header from "../../components/header/Header";
+import GameArea from "../../components/kuku-kube/GameArea";
 
 export function KukuKube() {
-  return <div>Hello "/kuku-kube/"!</div>
+  return (
+    <>
+      <Header/>
+      <section className="w-full h-screen flex items-center justify-center">
+        <GameArea/>
+      </section>
+    </>
+  )
 }
