@@ -1,5 +1,6 @@
 import { colord } from "../../shared/lib/colord";
 import { getMatchPercentage } from "../../shared/utils/get-match-percentage";
+import { getContrastColor } from "../../shared/utils/get-сontrast-сolor";
 
 import Header from '../header/Header'
 import IArrow from "../icons/IArrow";
@@ -14,6 +15,9 @@ const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResul
   const coefficient = getMatchPercentage(
   colord(targetColor).delta(selectedColor)
 );
+
+const selectedTextColor = getContrastColor(selectedColor)
+const targetTextColor = getContrastColor(targetColor)
   return (
     <section>
       <Header />
@@ -22,9 +26,9 @@ const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResul
 
           <div
             className="flex-1 relative"
-            style={{ background: selectedColor }}
+            style={{ background: selectedColor, color: selectedTextColor }}
           >
-            <div className="absolute top-4 left-4 rounded-lg text-black">
+            <div className="absolute top-4 left-4 rounded-lg">
               <span className="text-sm">{round} / 5</span>
             </div>
 
@@ -40,7 +44,7 @@ const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResul
           </div>
           <div
             className="flex-1 relative"
-            style={{ background: targetColor }}
+            style={{ background: targetColor, color: targetTextColor  }}
           >
             <div className="absolute bottom-4 left-4">
               <div className="">Оригинал</div>
