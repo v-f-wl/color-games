@@ -1,15 +1,22 @@
 import { useState } from "react"
 import { generateBoard } from "../../shared/utils/generate-board"
+import type { DifficultyLevel } from "../../types"
 
-const GameArea = () => {
-  const [levelData, setLevelData] = useState(() => generateBoard(6))
+
+interface GameAreaProps{
+  difficultValue: DifficultyLevel
+}
+const GameArea = ({difficultValue}: GameAreaProps) => {
+  const [levelData, setLevelData] = useState(() => generateBoard(6, difficultValue))
   const [score, setScore] = useState(0)
   const submitAnswer = (color: string) => {
     if (color === levelData.diffColor) {
       setScore(prev => prev + 1)
-      setLevelData(generateBoard(6))
+      setLevelData(generateBoard(6, difficultValue))
+    }else{
+    setScore(() => 0)
     }
-    return
+
   }
 
   return (

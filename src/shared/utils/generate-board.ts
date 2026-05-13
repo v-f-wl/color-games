@@ -1,9 +1,16 @@
+import type { DifficultyLevel } from "../../types";
 import generateRandomColor from "./generate-color";
+import generateSimilarColor from "./generate-similar-color";
 
-export const generateBoard = (size: number) => {
+const COMPLEXITY_CONFIG  = {
+  easy: 40,
+  medium: 20,
+  hard: 10
+}
+export const generateBoard = (size: number, difficultValue: DifficultyLevel) => {
   const numTiles = size * size;
   const baseColor = generateRandomColor()
-  const diffColor = generateRandomColor()
+  const diffColor = generateSimilarColor(baseColor, COMPLEXITY_CONFIG[difficultValue])
   
   const board = Array(numTiles - 1).fill(baseColor);
   board.push(diffColor);
