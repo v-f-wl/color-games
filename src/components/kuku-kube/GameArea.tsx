@@ -8,14 +8,21 @@ interface GameAreaProps{
   onScoreIncrease: () => void
   handleFinishGame: () => void
   score: number
+  timeLeft: number
 }
-const GameArea = ({difficultValue, onScoreIncrease, handleFinishGame, score}: GameAreaProps) => {
+const GameArea = ({
+    difficultValue, 
+    score, 
+    timeLeft,
+    onScoreIncrease, 
+    handleFinishGame, 
+  }: GameAreaProps) => {
   const [levelData, setLevelData] = useState(() => generateBoard(6, difficultValue))
 
   const submitAnswer = (color: string) => {
     if (color === levelData.diffColor) {
       onScoreIncrease()
-      setLevelData(generateBoard(6, difficultValue))
+      setLevelData(() => generateBoard(6, difficultValue))
     }else{
       handleFinishGame()
     }
@@ -30,13 +37,14 @@ const GameArea = ({difficultValue, onScoreIncrease, handleFinishGame, score}: Ga
       <div className="grid grid-cols-6 gap-1">
         {levelData.board.map((item, index) => (
           <div
-            key={index}
-            onClick={() => submitAnswer(item)}
-            className="w-8 h-8"
-            style={{ background: item }}
+          key={index}
+          onClick={() => submitAnswer(item)}
+          className="w-8 h-8"
+          style={{ background: item }}
           ></div>
         ))}
       </div>
+      <div className="">{timeLeft}</div>
     </div>
   );
 }
