@@ -5,16 +5,19 @@ import type { DifficultyLevel } from "../../types"
 
 interface GameAreaProps{
   difficultValue: DifficultyLevel
+  onScoreIncrease: () => void
+  handleFinishGame: () => void
+  score: number
 }
-const GameArea = ({difficultValue}: GameAreaProps) => {
+const GameArea = ({difficultValue, onScoreIncrease, handleFinishGame, score}: GameAreaProps) => {
   const [levelData, setLevelData] = useState(() => generateBoard(6, difficultValue))
-  const [score, setScore] = useState(0)
+
   const submitAnswer = (color: string) => {
     if (color === levelData.diffColor) {
-      setScore(prev => prev + 1)
+      onScoreIncrease()
       setLevelData(generateBoard(6, difficultValue))
     }else{
-    setScore(() => 0)
+      handleFinishGame()
     }
 
   }
