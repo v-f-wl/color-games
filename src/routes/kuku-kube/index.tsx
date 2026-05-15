@@ -22,7 +22,10 @@ export function KukuKube() {
 
   useEffect(() => {
     if (step !== 'game') return
-    if (modeValue !== 'time') return
+    if (modeValue !== 'time'){
+      setTimeLeft(() => -1)
+      return
+    }
 
     if (timeLeft <= 0) {
       finishGame()

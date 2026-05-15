@@ -6,8 +6,9 @@ import { GAME_MODES_CONFIG } from "../../shared/constants/gameModes.config";
 import { Route } from "./$gameId.route";
 
 import GameNotFound from "../../components/errors/GameNotFound";
-import DescriptionRuleCard from "../../components/description/DescriptionRuleCard";
+import DifficultySelectorCard from "../../components/description/DifficultySelectorCard";
 import Header from '../../components/header/Header'
+import GameModeCard from "../../components/description/GameModeCard";
 
 const DescriptionPage = () => {
   const { gameId } = Route.useParams()
@@ -34,7 +35,7 @@ const DescriptionPage = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <section className="wrapper max-w-5xl pt-32">
         <h1 className="font-semibold text-4xl ">{game.title}</h1>
         <p className="mt-8 text-neutral-600">{game.description}</p>
@@ -42,12 +43,12 @@ const DescriptionPage = () => {
         <h2 className="mt-6 font-semibold text-2xl">Уровни сложности:</h2>
         <div className="flex gap-4 mt-4">
           {game.difficulties.map((d) => (
-            <DescriptionRuleCard
+            <DifficultySelectorCard
               key={d.id}
               id={d.id}
               title={d.title}
               description={d.description}
-              isActive={difficultValue === d.id }
+              isActive={difficultValue === d.id}
               handleChangeDifficult={handleChangeDifficult}
             />
           ))}
@@ -58,25 +59,24 @@ const DescriptionPage = () => {
             <h2 className="mt-6 font-semibold text-2xl">Режимы игры</h2>
             <div className="flex mt-4">
               {game.hasModes.map((mode) => (
-                <div
+                <GameModeCard
                   key={mode.id}
-                  className={`${modeValue === mode.id && 'border-red-300 border'}`}
-                  onClick={() => handleChangeMode(mode.id)}
-                >
-                  <h3>{mode.title}</h3>
-                  <p>{mode.description}</p>
-                </div>
+                  title={mode.title}
+                  description={mode.description}
+                  isActive={modeValue === mode.id}
+                  handleChangeDifficult={() => handleChangeMode(mode.id)}
+                />
               ))}
             </div>
           </>
         )}
         <div className="mt-12 flex justify-center items-center gap-8">
           <Link to="/">Назад</Link>
-          <Link 
+          <Link
             className="button"
-            to={'/'+`${gameId}`}
+            to={'/' + `${gameId}`}
             state={{
-              modeValue ,
+              modeValue,
               difficultValue,
             }}
           >

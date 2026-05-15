@@ -11,14 +11,13 @@ const IndexComponent = () => {
         <p className="mx-auto font-light text-center mt-5 max-w-2/3">Это игра, в которой ты тренируешь восприятие оттенков и внимание к деталям. Подбирай цвета, находи отличия и проверяй, насколько точно ты видишь разницу. Выбирай режим, повышай сложность и улучшай свой результат с каждой попыткой.</p>
 
         <h2 className="mt-16 text-center">Выберете режим:</h2>
-        <div className="my-8 flex justify-between gap-8">
+        <div className="my-8 flex justify-center gap-8">
           {GAME_MODES.map(mode => (
             <GameCard 
               key={mode.id} 
               title={mode.title} 
               description={mode.description} 
               gameId={mode.id}
-              imgUrl={mode.image}
             />
           ))}
         </div>

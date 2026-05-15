@@ -44,7 +44,9 @@ const GameArea = ({
           ></div>
         ))}
       </div>
-      <div className="">{timeLeft}</div>
+      {timeLeft !== -1 && (
+        <div className="">{timeLeft}</div>
+      )}
     </div>
   );
 }

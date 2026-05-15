@@ -1,19 +1,19 @@
 import type { DifficultyLevel } from "../../types"
 
-interface DescriptionRuleCardProps{
+interface DifficultySelectorCardProps{
   id: DifficultyLevel
   title: string
   description: string
   isActive: boolean
   handleChangeDifficult: (id: DifficultyLevel) => void
 }
-const DescriptionRuleCard = ({
+const DifficultySelectorCard = ({
   id,
   title,
   description,
   isActive,
   handleChangeDifficult
-}: DescriptionRuleCardProps) => {
+}: DifficultySelectorCardProps) => {
   return (
     <div
       className={`
@@ -23,10 +23,10 @@ const DescriptionRuleCard = ({
       `}
       onClick={() => handleChangeDifficult(id)}
     >
-      <h3 className="text-2xl font-medium text-neutral-800">{title}</h3>
-      <p className="mt-4 text-neutral-700">{description}</p>
+      <h3 className="text-xl text-neutral-800">{title}</h3>
+      <p className="mt-2 text-neutral-700">{description}</p>
     </div>
   );
 }
 
-export default DescriptionRuleCard;
+export default DifficultySelectorCard;

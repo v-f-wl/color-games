@@ -11,16 +11,16 @@
 .button{
   padding: 4px 8px;
   display: inline-flex;
-  border: 3px solid #56984e;
+  border: 2px solid #393939fd;
   font-size: 16px;
   font-weight: 500;
   color: #fff;
-  background: #56984e;
+  background: #393939fd;
   border-radius: 8px;
   transition: 0.3s;
 }
 .button:hover{
-  border-color: #486944fd;
+  border-color: #606060fd;
   background: transparent;
-  color: #486944fd;
+  color: #606060fd;
 }
