@@ -18,8 +18,8 @@ const GameCard = ({
   gameId,
 }: GameCardProps) => {
   return (  
-    <div className="p-4 border border-gray-300 rounded-lg text-neutral-700 max-w-xs">
-      <div className="w-full h-12 flex ">
+    <div className="p-4 border border-gray-300 rounded-lg max-w-xs">
+      <div className="w-full h-12 flex text-inherit">
         {/* {GAME_ICON[gameId]} */}
       </div>
       <h3 className="mt-8 font-medium text-xl">{title}</h3>

@@ -1,12 +1,12 @@
 import { Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+
 
 const RootComponent = () => {
-  return ( 
-    <>
-        <Outlet/>
-        <TanStackRouterDevtools position="bottom-right" />
-    </> );
+  return (
+    <div className="bg-white dark:bg-slate-900 min-h-screen">
+      <Outlet />
+    </div>
+  );
 }
- 
+
 export default RootComponent;

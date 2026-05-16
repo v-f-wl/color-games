@@ -36,9 +36,9 @@ const DescriptionPage = () => {
   return (
     <>
       <Header />
-      <section className="wrapper max-w-5xl pt-32">
+      <section className="wrapper max-w-5xl pt-32 text-black dark:text-white">
         <h1 className="font-semibold text-4xl ">{game.title}</h1>
-        <p className="mt-8 text-neutral-600">{game.description}</p>
+        <p className="mt-8 text-neutral-600 dark:text-neutral-200">{game.description}</p>
 
         <h2 className="mt-6 font-semibold text-2xl">Уровни сложности:</h2>
         <div className="flex gap-4 mt-4">
