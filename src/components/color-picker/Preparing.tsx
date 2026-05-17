@@ -24,7 +24,7 @@ const Preparing = ({ duration, onComplete }: PreparingProps) => {
   const seconds = Math.floor((timeLeft % 60000) / 1000);
 
   return (
-    <div className='w-full h-screen flex items-center justify-center flex-col gap-2'>
+    <div className='w-full h-screen flex items-center justify-center flex-col gap-2 text-black dark:text-white'>
       <span className='text-6xl font-bold'>
         {String(seconds).padStart(2,)}
       </span>

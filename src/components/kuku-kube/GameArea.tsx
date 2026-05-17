@@ -30,7 +30,7 @@ const GameArea = ({
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <div className="flex flex-col gap-4 items-center text-black dark:text-white">
       <div className="text-3xl font-medium">
         <span>Счет:</span> <span>{score}</span>
       </div>

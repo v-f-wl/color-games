@@ -10,12 +10,12 @@ const ResultArea = ({
   score, difficult, mode, onStartAgain
 }: ResultAreaProps) => {
   return (
-    <section className="w-screen h-screen flex items-center justify-center">
+    <section className="w-screen h-screen flex items-center justify-center text-black dark:text-white">
       <div className="flex flex-col gap-4 items-center">
         <h2 className="text-4xl font-semibold">
           Ваш результат:
         </h2>
-        <span className="text-3xl font-medium text-neutral-600">{score}</span>
+        <span className="text-3xl font-medium">{score}</span>
         <div className=""><span>Сложность: {difficult}</span></div>
         <div className=""><span>Режим: {mode}</span></div>
 
@@ -33,7 +33,7 @@ const ResultArea = ({
           </Link>
           <div
             onClick={onStartAgain}
-            className="cursor-pointer"
+            className="cursor-pointer button"
           >
             Начать заново
           </div>

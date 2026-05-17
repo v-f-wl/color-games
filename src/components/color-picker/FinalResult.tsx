@@ -16,7 +16,7 @@ const FinalResult = ({ historyList, resetGame }: FinalResultProps) => {
     <>
       <Header />
       <section>
-        <div className="w-full h-screen flex items-center justify-center flex-col gap-12">
+        <div className="w-full h-screen flex items-center justify-center flex-col gap-12 text-black dark:text-white">
           <div className="flex gap-4 relative">
             <div className="absolute -top-7 left-1/2 -translate-x-1/2">Оригинал</div>
             <div className="absolute -bottom-7 left-1/2 -translate-x-1/2">Ваш цвет</div>
@@ -38,7 +38,7 @@ const FinalResult = ({ historyList, resetGame }: FinalResultProps) => {
           
           <div className="flex gap-8 items-center">
             <Link to="/">Главное меню</Link>
-            <button onClick={resetGame}>Играть снова</button>
+            <button className="button" onClick={resetGame}>Играть снова</button>
           </div>
         </div>
       </section>
