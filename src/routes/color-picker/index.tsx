@@ -54,7 +54,12 @@ const ColorPicker = () => {
   }
 
   return (
-    <div className="">
+    <div className="relative">
+      {step !== 'FINAL_RESULTS' && (
+        <div className="button absolute bottom-4 left-1/2 -translate-x-1/2 z-40 cursor-pointer">
+          Выйти на главное меню
+        </div>
+      )}
       {step === 'PREPARING' && <Preparing duration={3000} onComplete={() => setStep('SHOW_COLOR')} />}
 
       {step === 'SHOW_COLOR' && <ShowColor currentColor={targetColor} duration={difficultValue === 'easy' ? 5000 : 3000} onComplete={() => setStep('PICK_COLOR')} />}
