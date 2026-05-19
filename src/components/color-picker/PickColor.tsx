@@ -24,6 +24,17 @@ const PickColor = ({submitColor, duration} : PickColorInterface) => {
     return () => clearInterval(timer)
   }, [timeLeft, duration])
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        handleSubmitColor()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, []);
   function handleSubmitColor(){
     submitColor(selectedColor)
   }

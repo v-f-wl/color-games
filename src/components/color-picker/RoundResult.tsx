@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { colord } from "../../shared/lib/colord";
 import { getMatchPercentage } from "../../shared/utils/get-match-percentage";
 import { getContrastColor } from "../../shared/utils/get-сontrast-сolor";
@@ -12,12 +13,21 @@ interface RoundResultProps {
   round: number
 }
 const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResultProps) => {
-  const coefficient = getMatchPercentage(
-  colord(targetColor).delta(selectedColor)
-);
+  const coefficient = getMatchPercentage(colord(targetColor).delta(selectedColor))
+  const selectedTextColor = getContrastColor(selectedColor)
+  const targetTextColor = getContrastColor(targetColor)
 
-const selectedTextColor = getContrastColor(selectedColor)
-const targetTextColor = getContrastColor(targetColor)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        nextStep()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, []);
   return (
     <section>
       <Header />
@@ -62,9 +72,11 @@ const targetTextColor = getContrastColor(targetColor)
               >
                 <IArrow size={44}/>
               </button> 
+
             </div>
           </div>
         </div>
+        <div className="absolute top-6 text-neutral-600 dark:text-neutral-400">Enter, чтобы продолжить</div>
       </div>
     </section>
   );

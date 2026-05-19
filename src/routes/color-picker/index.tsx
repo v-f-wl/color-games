@@ -1,4 +1,4 @@
-import { useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 
 import type { HistoryListType } from "../../types";
@@ -56,9 +56,9 @@ const ColorPicker = () => {
   return (
     <div className="relative">
       {step !== 'FINAL_RESULTS' && (
-        <div className="button absolute bottom-4 left-1/2 -translate-x-1/2 z-40 cursor-pointer">
+        <Link to="/" className="button absolute bottom-4 left-1/2 -translate-x-1/2 z-40 cursor-pointer">
           Выйти на главное меню
-        </div>
+        </Link>
       )}
       {step === 'PREPARING' && <Preparing duration={3000} onComplete={() => setStep('SHOW_COLOR')} />}
 
