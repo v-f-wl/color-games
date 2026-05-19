@@ -30,8 +30,13 @@ const GameArea = ({
   }
 
   return (
-    <div className="flex flex-col gap-4 items-center text-black dark:text-white">
-      <div className="text-3xl font-medium">
+    <div className="flex flex-col gap-4 items-center justify-center text-black dark:text-white">
+      {timeLeft !== -1 && (
+        <div>
+          <span>Осталось: </span><span>{timeLeft}</span> <span>с.</span>
+        </div>
+      )}
+      <div className="text-4xl font-medium">
         <span>Счет:</span> <span>{score}</span>
       </div>
       <div className="grid grid-cols-6 gap-1">
@@ -44,9 +49,6 @@ const GameArea = ({
           ></div>
         ))}
       </div>
-      {timeLeft !== -1 && (
-        <div className="">{timeLeft}</div>
-      )}
     </div>
   );
 }

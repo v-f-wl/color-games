@@ -23,7 +23,7 @@ const DifficultySelectorCard = ({
       `}
       onClick={() => handleChangeDifficult(id)}
     >
-      <h3 className="text-xl text-neutral-800 dark:text-neutral-50">{title}</h3>
+      <h3 className="text-xl text-neutral-800 dark:text-neutral-50 ">{title}</h3>
       <p className="mt-2 text-neutral-700 dark:text-neutral-200">{description}</p>
     </div>
   );

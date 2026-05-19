@@ -22,8 +22,8 @@ const FinalResult = ({ historyList, resetGame }: FinalResultProps) => {
             <div className="absolute -bottom-7 left-1/2 -translate-x-1/2">Ваш цвет</div>
             {historyList.map(item => (
               <div 
-                className="w-20 h-20"
-                style={{ background:  `linear-gradient(135deg, ${item.targetColor} 50%, ${item.selectedColor} 50%)` }}
+                className="w-24 h-24 rounded-md overflow-hidden"
+                style={{ background:  `linear-gradient(180deg, ${item.targetColor} 50%, ${item.selectedColor} 50%)` }}
               >
                 
               </div>

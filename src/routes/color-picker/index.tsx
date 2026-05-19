@@ -56,7 +56,7 @@ const ColorPicker = () => {
   return (
     <div className="relative">
       {step !== 'FINAL_RESULTS' && (
-        <Link to="/" className="button absolute bottom-4 left-1/2 -translate-x-1/2 z-40 cursor-pointer">
+        <Link to="/" className="button absolute top-7 left-4 z-40 cursor-pointer">
           Выйти на главное меню
         </Link>
       )}

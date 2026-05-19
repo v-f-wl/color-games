@@ -11,7 +11,7 @@ const Header = () => {
         bg-slate-900 text-white dark:bg-white dark:text-slate-900 rounded-full
       "
     >
-      <Link to='/' className="font-semibold text-3xl">Color game</Link>
+      <Link to='/' className="font-semibold text-3xl sans-serif">Color game</Link>
       <ThemeSwitcher/>
     </header>
   );

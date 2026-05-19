@@ -28,7 +28,6 @@ const GameCard = ({
         to="/description/$gameId" 
         className="button mt-4 "
         params={{gameId: gameId}}
-        // className="mt-4 py-1 px-4 rounded-full text-white inline-block hover:opacity-50 transition-opacity bg-neutral-900"
       >
         Играть
       </Link>

@@ -2,12 +2,10 @@ import { Link } from "@tanstack/react-router"
 
 interface ResultAreaProps {
   score: number
-  difficult: string
-  mode: string
   onStartAgain: () => void
 }
 const ResultArea = ({
-  score, difficult, mode, onStartAgain
+  score, onStartAgain
 }: ResultAreaProps) => {
   return (
     <section className="w-screen h-screen flex items-center justify-center text-black dark:text-white">
@@ -16,8 +14,6 @@ const ResultArea = ({
           Ваш результат:
         </h2>
         <span className="text-3xl font-medium">{score}</span>
-        <div className=""><span>Сложность: {difficult}</span></div>
-        <div className=""><span>Режим: {mode}</span></div>
 
         <div className="mt-4 flex items-center gap-5">
           <Link

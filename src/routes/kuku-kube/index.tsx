@@ -10,7 +10,7 @@ type KUKUKUBE_STEPS = 'game' | 'result'
 export function KukuKube() {
   const [score, setScore] = useState(0)
   const [step, setStep] = useState<KUKUKUBE_STEPS>('game')
-  const [timeLeft, setTimeLeft] = useState(5)
+  const [timeLeft, setTimeLeft] = useState(30)
 
   const location = useLocation()
   const difficultValue = location.state.difficultValue
@@ -41,7 +41,7 @@ export function KukuKube() {
 
   const handleStartGameAgain = () => {
     setScore(() => 0)
-    setTimeLeft(() => 5)
+    setTimeLeft(() => 30)
     setStep('game')
   }
 
@@ -65,8 +65,6 @@ export function KukuKube() {
         {step == 'result' &&
           <ResultArea
             score={score}
-            difficult={difficultValue}
-            mode={modeValue}
             onStartAgain={handleStartGameAgain}
           />
         }

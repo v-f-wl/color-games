@@ -76,7 +76,6 @@ const RoundResult = ({ targetColor, selectedColor, nextStep, round }: RoundResul
             </div>
           </div>
         </div>
-        <div className="absolute top-6 text-neutral-600 dark:text-neutral-400">Enter, чтобы продолжить</div>
       </div>
     </section>
   );
