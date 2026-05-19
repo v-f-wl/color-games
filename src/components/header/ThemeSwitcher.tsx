@@ -36,8 +36,9 @@ const ThemeSwitcher = () => {
   return ( 
     <div
       onClick={toggleTheme}
-      className="text-black dark:text-white"
+      className="flex items-center gap-2 cursor-pointer"
     >
+      <span className="">Тема</span>
       <ILight size={24} />
     </div>
   );
