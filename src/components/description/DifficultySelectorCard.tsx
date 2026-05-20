@@ -1,4 +1,5 @@
 import type { DifficultyLevel } from "../../types"
+import ISelected from "../icons/ISelected"
 
 interface DifficultySelectorCardProps{
   id: DifficultyLevel
@@ -17,14 +18,18 @@ const DifficultySelectorCard = ({
   return (
     <div
       className={`
-        ${isActive ? 'border-neutral-300 opacity-100' : 'border-transparent'}
-        border p-4 cursor-pointer rounded-lg opacity-80
-        hover:opacity-100 transition-all
+        p-4 cursor-pointer rounded-lg transition-all relative
+        bg-white dark:bg-neutral-700 shadow-lg
       `}
       onClick={() => handleChangeDifficult(id)}
     >
       <h3 className="text-xl text-neutral-800 dark:text-neutral-50 ">{title}</h3>
       <p className="mt-2 text-neutral-700 dark:text-neutral-200">{description}</p>
+      {isActive && (
+        <div className="absolute top-4 right-4 p-2 w-8 h-8 bg-green-500 rounded-full text-white flex items-center justify-center">
+          <ISelected/>
+        </div>
+      )}
     </div>
   );
 }

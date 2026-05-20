@@ -37,10 +37,10 @@ const DescriptionPage = () => {
     <>
       <Header />
       <section className="wrapper max-w-5xl pt-32 text-black dark:text-white">
-        <h1 className="font-semibold text-4xl ">{game.title}</h1>
-        <p className="mt-8 text-neutral-600 dark:text-neutral-200">{game.description}</p>
+        <h1 className="font-semibold text-6xl text-center">{game.title}</h1>
+        <p className="mt-8 mx-auto max-w-[80%] text-center text-neutral-600 dark:text-neutral-200">{game.description}</p>
 
-        <h2 className="mt-6 font-semibold text-2xl">Уровни сложности:</h2>
+        <h2 className="mt-14 font-semibold text-3xl">Уровнь сложности</h2>
         <div className="flex gap-4 mt-4">
           {game.difficulties.map((d) => (
             <DifficultySelectorCard
@@ -56,8 +56,8 @@ const DescriptionPage = () => {
 
         {game.hasModes && (
           <>
-            <h2 className="mt-6 font-semibold text-2xl">Режимы игры</h2>
-            <div className="flex mt-4">
+            <h2 className="mt-8 font-semibold text-3xl">Режимы игры</h2>
+            <div className="flex gap-4 mt-4">
               {game.hasModes.map((mode) => (
                 <GameModeCard
                   key={mode.id}

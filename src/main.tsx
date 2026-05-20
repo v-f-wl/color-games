@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+import { ScrollTrigger, SplitText } from "gsap/all";
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
@@ -21,6 +23,7 @@ declare module '@tanstack/react-router' {
 
 const rootElement = document.getElementById('root')!
 
+gsap.registerPlugin(ScrollTrigger, SplitText)
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(

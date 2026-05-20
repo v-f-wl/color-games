@@ -34,7 +34,7 @@ const PickColor = ({submitColor, duration} : PickColorInterface) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, []);
+  }, [selectedColor])
   function handleSubmitColor(){
     submitColor(selectedColor)
   }
